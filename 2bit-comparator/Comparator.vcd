@@ -1,0 +1,196 @@
+$date
+	Sun Feb 18 15:40:25 2018
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module tb_tm $end
+$var wire 1 ! eq $end
+$var wire 1 " gt $end
+$var wire 1 # ls $end
+$var reg 1 $ a $end
+$var reg 1 % b $end
+$var reg 1 & x $end
+$var reg 1 ' y $end
+$scope module uut $end
+$var wire 1 ( a $end
+$var wire 1 ) a1 $end
+$var wire 1 * a2 $end
+$var wire 1 + a3 $end
+$var wire 1 , a4 $end
+$var wire 1 - b $end
+$var wire 1 ! eq $end
+$var wire 1 " gt $end
+$var wire 1 # ls $end
+$var wire 1 . x $end
+$var wire 1 / x1 $end
+$var wire 1 0 xno1 $end
+$var wire 1 1 y $end
+$var wire 1 2 y1 $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+12
+01
+10
+1/
+0.
+0-
+1,
+1+
+0*
+0)
+0(
+0'
+0&
+0%
+0$
+0#
+0"
+1!
+$end
+#5
+1#
+0!
+02
+0,
+1'
+11
+#10
+12
+1,
+0/
+00
+0+
+0'
+01
+1&
+1.
+#15
+02
+0,
+1'
+11
+#20
+0#
+1"
+1*
+12
+1/
+10
+1+
+0'
+01
+0&
+0.
+1%
+1-
+#25
+0"
+0*
+1!
+02
+1,
+1'
+11
+#30
+1#
+0!
+12
+0,
+0/
+00
+0+
+0'
+01
+1&
+1.
+#35
+02
+1,
+1'
+11
+#40
+0#
+1"
+1)
+12
+1/
+0'
+01
+0&
+0.
+0%
+0-
+1$
+1(
+#45
+02
+0,
+1'
+11
+#50
+0"
+0)
+1!
+12
+1,
+0/
+10
+1+
+0'
+01
+1&
+1.
+#55
+1#
+0!
+02
+0,
+1'
+11
+#60
+0#
+1"
+1)
+12
+1/
+00
+0+
+0'
+01
+0&
+0.
+1%
+1-
+#65
+02
+1,
+1'
+11
+#70
+0)
+1*
+12
+0,
+0/
+10
+1+
+0'
+01
+1&
+1.
+#75
+0"
+0*
+1!
+02
+1,
+1'
+11
+#80

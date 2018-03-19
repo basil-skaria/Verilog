@@ -1,0 +1,30 @@
+$date
+	Sun Mar 18 20:20:04 2018
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module tb $end
+$var wire 4 ! dout [3:0] $end
+$var reg 4 " din [3:0] $end
+$scope module aa $end
+$var wire 4 # din [3:0] $end
+$var wire 4 $ dout [3:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b11 $
+b10 #
+b10 "
+b11 !
+$end
+#5
+b100 !
+b100 $
+b111 "
+b111 #

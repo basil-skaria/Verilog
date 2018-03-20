@@ -1,485 +1,54 @@
-module MUX(i3,i2,i1,i0,s1,s0,out);
-	input i3,i2,i1,i0,s1,s0;
-	output out;
-	wire n_s1,n_s0,t3,t2,t1,t0;
-	
-	not n1(n_s1,s1);
-	not n0(n_s0,s0);
-	
-	and a0(t0,i0,n_s1,n_s0);
-	and a1(t1,i1,n_s1,s0);
-	and a2(t2,i2,s1,n_s0);
-	and a3(t3,i3,s1,s0);
-	
-	or o0(out,t0,t1,t2,t3);
-	
+module SIPO ( din ,clk ,reset ,dout );
+
+output [3:0] dout ;
+wire [3:0] dout ;
+
+input din ;
+wire din ;
+input clk ;
+wire clk ;
+input reset ;
+wire reset ;
+reg [3:0]s;
+
+always @ (posedge (clk)) begin 
+ if (reset)
+  s <= 0;
+ else begin
+  s[3] <= din;
+  s[2] <= s[3];
+  s[1] <= s[2];
+  s[0] <= s[1];
+ end
+end
+assign dout = s;
 endmodule
 
-module tb;
-	reg IP3,IP2,IP1,IP0,SEL_1,SEL_0;
-	wire OP3,OP2,OP1,OP0;
-	
-	MUX m0( .i3(IP1), .i2(IP1),  .i1(1'b1), .i0(IP0), .s1(SEL_1), .s0(SEL_0), .out(OP0) );
-	MUX m1( .i3(IP2), .i2(IP2),  .i1(IP0),  .i0(IP1), .s1(SEL_1), .s0(SEL_0), .out(OP1) );
-	MUX m2( .i3(IP3), .i2(IP3),  .i1(IP1),  .i0(IP2), .s1(SEL_1), .s0(SEL_0), .out(OP2) );
-	MUX m3( .i3(IP0), .i2(1'b1), .i1(IP2),  .i0(IP3), .s1(SEL_1), .s0(SEL_0), .out(OP3) );
-	
+module tb();
+	reg din, clk=0,reset;
+	wire [3:0] dout;
+	SIPO uut (.din(din),.dout(dout),.clk(clk),.reset(reset));
+	always #1 clk=~clk;
 	initial begin
-	
-	$monitor("Value = %b%b%b%b     Operation = %b%b     Result = %b%b%b",IP3,IP2,IP1,IP0,SEL_1,SEL_0,OP3,OP2,OP1,OP0);
-	$dumpfile("Shifter.vcd");
-	$dumpvars;
-	
-		IP3=1'b0;
-		IP2=1'b0;
-		IP1=1'b0;
-		IP0=1'b0;	
-		SEL_1=1'b0;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b0;
-		IP2=1'b0;
-		IP1=1'b0;
-		IP0=1'b1;		
-		SEL_1=1'b0;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b0;
-		IP2=1'b0;
-		IP1=1'b1;
-		IP0=1'b0;		
-		SEL_1=1'b0;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b0;
-		IP2=1'b0;
-		IP1=1'b1;
-		IP0=1'b1;		
-		SEL_1=1'b0;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b0;
-		IP2=1'b1;
-		IP1=1'b0;
-		IP0=1'b0;	
-		SEL_1=1'b0;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b0;
-		IP2=1'b1;
-		IP1=1'b0;
-		IP0=1'b1;		
-		SEL_1=1'b0;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b0;
-		IP2=1'b1;
-		IP1=1'b1;
-		IP0=1'b0;		
-		SEL_1=1'b0;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b0;
-		IP2=1'b1;
-		IP1=1'b1;
-		IP0=1'b1;		
-		SEL_1=1'b0;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b1;
-		IP2=1'b0;
-		IP1=1'b0;
-		IP0=1'b0;	
-		SEL_1=1'b0;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b1;
-		IP2=1'b0;
-		IP1=1'b0;
-		IP0=1'b1;		
-		SEL_1=1'b0;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b1;
-		IP2=1'b0;
-		IP1=1'b1;
-		IP0=1'b0;		
-		SEL_1=1'b0;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b1;
-		IP2=1'b0;
-		IP1=1'b1;
-		IP0=1'b1;		
-		SEL_1=1'b0;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b1;
-		IP2=1'b1;
-		IP1=1'b0;
-		IP0=1'b0;	
-		SEL_1=1'b0;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b1;
-		IP2=1'b1;
-		IP1=1'b0;
-		IP0=1'b1;		
-		SEL_1=1'b0;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b1;
-		IP2=1'b1;
-		IP1=1'b1;
-		IP0=1'b0;		
-		SEL_1=1'b0;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b1;
-		IP2=1'b1;
-		IP1=1'b1;
-		IP0=1'b1;		
-		SEL_1=1'b0;
-		SEL_0=1'b0;
-		#10;
-		//-------------------------------------
-		IP3=1'b0;
-		IP2=1'b0;
-		IP1=1'b0;
-		IP0=1'b0;	
-		SEL_1=1'b0;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b0;
-		IP2=1'b0;
-		IP1=1'b0;
-		IP0=1'b1;		
-		SEL_1=1'b0;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b0;
-		IP2=1'b0;
-		IP1=1'b1;
-		IP0=1'b0;		
-		SEL_1=1'b0;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b0;
-		IP2=1'b0;
-		IP1=1'b1;
-		IP0=1'b1;		
-		SEL_1=1'b0;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b0;
-		IP2=1'b1;
-		IP1=1'b0;
-		IP0=1'b0;	
-		SEL_1=1'b0;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b0;
-		IP2=1'b1;
-		IP1=1'b0;
-		IP0=1'b1;		
-		SEL_1=1'b0;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b0;
-		IP2=1'b1;
-		IP1=1'b1;
-		IP0=1'b0;		
-		SEL_1=1'b0;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b0;
-		IP2=1'b1;
-		IP1=1'b1;
-		IP0=1'b1;		
-		SEL_1=1'b0;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b1;
-		IP2=1'b0;
-		IP1=1'b0;
-		IP0=1'b0;	
-		SEL_1=1'b0;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b1;
-		IP2=1'b0;
-		IP1=1'b0;
-		IP0=1'b1;		
-		SEL_1=1'b0;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b1;
-		IP2=1'b0;
-		IP1=1'b1;
-		IP0=1'b0;		
-		SEL_1=1'b0;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b1;
-		IP2=1'b0;
-		IP1=1'b1;
-		IP0=1'b1;		
-		SEL_1=1'b0;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b1;
-		IP2=1'b1;
-		IP1=1'b0;
-		IP0=1'b0;	
-		SEL_1=1'b0;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b1;
-		IP2=1'b1;
-		IP1=1'b0;
-		IP0=1'b1;		
-		SEL_1=1'b0;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b1;
-		IP2=1'b1;
-		IP1=1'b1;
-		IP0=1'b0;		
-		SEL_1=1'b0;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b1;
-		IP2=1'b1;
-		IP1=1'b1;
-		IP0=1'b1;		
-		SEL_1=1'b0;
-		SEL_0=1'b1;
-		#10
-		//-------------------------------------
-		IP3=1'b0;
-		IP2=1'b0;
-		IP1=1'b0;
-		IP0=1'b0;	
-		SEL_1=1'b1;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b0;
-		IP2=1'b0;
-		IP1=1'b0;
-		IP0=1'b1;		
-		SEL_1=1'b1;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b0;
-		IP2=1'b0;
-		IP1=1'b1;
-		IP0=1'b0;		
-		SEL_1=1'b1;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b0;
-		IP2=1'b0;
-		IP1=1'b1;
-		IP0=1'b1;		
-		SEL_1=1'b1;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b0;
-		IP2=1'b1;
-		IP1=1'b0;
-		IP0=1'b0;	
-		SEL_1=1'b1;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b0;
-		IP2=1'b1;
-		IP1=1'b0;
-		IP0=1'b1;		
-		SEL_1=1'b1;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b0;
-		IP2=1'b1;
-		IP1=1'b1;
-		IP0=1'b0;		
-		SEL_1=1'b1;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b0;
-		IP2=1'b1;
-		IP1=1'b1;
-		IP0=1'b1;		
-		SEL_1=1'b1;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b1;
-		IP2=1'b0;
-		IP1=1'b0;
-		IP0=1'b0;	
-		SEL_1=1'b1;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b1;
-		IP2=1'b0;
-		IP1=1'b0;
-		IP0=1'b1;		
-		SEL_1=1'b1;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b1;
-		IP2=1'b0;
-		IP1=1'b1;
-		IP0=1'b0;		
-		SEL_1=1'b1;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b1;
-		IP2=1'b0;
-		IP1=1'b1;
-		IP0=1'b1;		
-		SEL_1=1'b1;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b1;
-		IP2=1'b1;
-		IP1=1'b0;
-		IP0=1'b0;	
-		SEL_1=1'b1;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b1;
-		IP2=1'b1;
-		IP1=1'b0;
-		IP0=1'b1;		
-		SEL_1=1'b1;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b1;
-		IP2=1'b1;
-		IP1=1'b1;
-		IP0=1'b0;		
-		SEL_1=1'b1;
-		SEL_0=1'b0;
-		#10
-		IP3=1'b1;
-		IP2=1'b1;
-		IP1=1'b1;
-		IP0=1'b1;		
-		SEL_1=1'b1;
-		SEL_0=1'b0;
-		#10
-		//-------------------------------------
-		IP3=1'b0;
-		IP2=1'b0;
-		IP1=1'b0;
-		IP0=1'b0;	
-		SEL_1=1'b1;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b0;
-		IP2=1'b0;
-		IP1=1'b0;
-		IP0=1'b1;		
-		SEL_1=1'b1;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b0;
-		IP2=1'b0;
-		IP1=1'b1;
-		IP0=1'b0;		
-		SEL_1=1'b1;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b0;
-		IP2=1'b0;
-		IP1=1'b1;
-		IP0=1'b1;		
-		SEL_1=1'b1;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b0;
-		IP2=1'b1;
-		IP1=1'b0;
-		IP0=1'b0;	
-		SEL_1=1'b1;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b0;
-		IP2=1'b1;
-		IP1=1'b0;
-		IP0=1'b1;		
-		SEL_1=1'b1;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b0;
-		IP2=1'b1;
-		IP1=1'b1;
-		IP0=1'b0;		
-		SEL_1=1'b1;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b0;
-		IP2=1'b1;
-		IP1=1'b1;
-		IP0=1'b1;		
-		SEL_1=1'b1;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b1;
-		IP2=1'b0;
-		IP1=1'b0;
-		IP0=1'b0;	
-		SEL_1=1'b1;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b1;
-		IP2=1'b0;
-		IP1=1'b0;
-		IP0=1'b1;		
-		SEL_1=1'b1;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b1;
-		IP2=1'b0;
-		IP1=1'b1;
-		IP0=1'b0;		
-		SEL_1=1'b1;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b1;
-		IP2=1'b0;
-		IP1=1'b1;
-		IP0=1'b1;		
-		SEL_1=1'b1;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b1;
-		IP2=1'b1;
-		IP1=1'b0;
-		IP0=1'b0;	
-		SEL_1=1'b1;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b1;
-		IP2=1'b1;
-		IP1=1'b0;
-		IP0=1'b1;		
-		SEL_1=1'b1;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b1;
-		IP2=1'b1;
-		IP1=1'b1;
-		IP0=1'b0;		
-		SEL_1=1'b1;
-		SEL_0=1'b1;
-		#10
-		IP3=1'b1;
-		IP2=1'b1;
-		IP1=1'b1;
-		IP0=1'b1;		
-		SEL_1=1'b1;
-		SEL_0=1'b1;
-		#10;		
+		$dumpfile("sipo.vcd");
+		$dumpvars;
+		$display("din | dout");
+		$monitor("%b   | %b",din,dout);
+		reset=1'b0;#1
+		reset=1'b1;#1
+		reset=1'b0;#1
+		din=1'b1;#1
+		din=1'b1;#1
+		din=1'b1;#1
+		din=1'b1;#1
+		din=1'b1;#1
+		din=1'b1;#1
+		din=1'b1;#1
+		din=1'b1;#1
+		din=1'b1;#1
+		din=1'b1;#1
+		din=1'b1;#1
+#20 $finish;
 	end
 endmodule
+		

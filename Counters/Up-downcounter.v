@@ -32,5 +32,5 @@ module tb;
     #100 up=1’b1;
    end
 always #5 clk=~clk;
-initial #150 $stop;
+#150 $finish;
 endmodule

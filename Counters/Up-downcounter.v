@@ -17,20 +17,20 @@ endmodule
 
 module tb;
 
-reg clk;
-reg clr;
-reg up;
-wire [3:0] q;
-updown uut (.clk(clk),.clr(clr),.up(up),.q(q));
+  reg clk;
+  reg clr;
+  reg up;
+  wire [3:0] q;
+  updown uut (.clk(clk),.clr(clr),.up(up),.q(q));
 
-initial begin
-clk = 0;
-clr = 0;
-up = 0;
-#5 clr=1’b1;
-#5 clr=1’b0;
-#100 up=1’b1;
-end
+  initial begin
+    clk = 0;
+    clr = 0;
+    up = 0;
+    #5 clr=1’b1;
+    #5 clr=1’b0;
+    #100 up=1’b1;
+   end
 always #5 clk=~clk;
 initial #150 $stop;
 endmodule

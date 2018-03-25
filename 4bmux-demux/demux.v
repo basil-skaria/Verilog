@@ -1,3 +1,10 @@
+/////////////////////////////////////////
+// Basil Skaria (20)                   // 
+// S4 CSE                              //
+// MITS                                // 
+// Verilog codes of lab cycle          //
+//                                     //
+/////////////////////////////////////////
 module demux (s0,s1,I,en,y0,y1,y2,y3);
 input s0,s1,I,en;
 output y0,y1,y2,y3;

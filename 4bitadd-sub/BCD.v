@@ -1,4 +1,10 @@
-
+/////////////////////////////////////////
+// Basil Skaria (20)                   // 
+// S4 CSE                              //
+// MITS                                // 
+// Verilog codes of lab cycle          //
+//                                     //
+/////////////////////////////////////////
 module bcd_adder(a,b,carry_in,sum,carry);
 
 input [3:0] a,b;

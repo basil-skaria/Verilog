@@ -1,3 +1,10 @@
+/////////////////////////////////////////
+// Basil Skaria (20)                   // 
+// S4 CSE                              //
+// MITS                                // 
+// Verilog codes of lab cycle          //
+//                                     //
+/////////////////////////////////////////
 module updown(clk,clr,up,q);
 input clk,clr,up;
 output [3:0] q;

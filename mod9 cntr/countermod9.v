@@ -9,7 +9,7 @@ begin
 
   if (reset)
     assign counter=4'd0;
-  else if(counter==4'b1001)
+  else if(counter==4'b1000)
     assign counter=4'd0;
   else
     assign counter=counter+4'd1;

@@ -1,3 +1,10 @@
+/////////////////////////////////////////
+// Basil Skaria (20)                   // 
+// S4 CSE                              //
+// MITS                                // 
+// Verilog codes of lab cycle          //
+//                                     //
+/////////////////////////////////////////
 module srff ( s ,r ,clk ,cl ,q ,nq );
 
 output q ;

@@ -1,3 +1,10 @@
+/////////////////////////////////////////
+// Basil Skaria (20)                   // 
+// S4 CSE                              //
+// MITS                                // 
+// Verilog codes of lab cycle          //
+//                                     //
+/////////////////////////////////////////
 module SIPO ( din ,clk ,reset ,dout );
 
 output [3:0] dout ;

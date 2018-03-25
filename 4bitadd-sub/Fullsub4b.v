@@ -1,4 +1,10 @@
-   
+/////////////////////////////////////////
+// Basil Skaria (20)                   // 
+// S4 CSE                              //
+// MITS                                // 
+// Verilog codes of lab cycle          //
+//                                     //
+/////////////////////////////////////////
 module full_sub ( a ,b ,c ,diff ,borrow );
 
 	output diff ;

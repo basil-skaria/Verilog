@@ -1,3 +1,10 @@
+/////////////////////////////////////////
+// Basil Skaria (20)                   // 
+// S4 CSE                              //
+// MITS                                // 
+// Verilog codes of lab cycle          //
+//                                     //
+/////////////////////////////////////////
 module Two_b_comp(x,y,a,b,eq,gt,ls);
     output eq,gt,ls;
     input a,b,x,y;

@@ -1,9 +1,11 @@
 # Verilog
-Written in iverilog 0.9.7 
+
+Written in iverilog 0.9.7  
 OS Ubuntu 16.04
 
-# Excecution
-compile:
+# Execution
+compile: 
 $iverilog <file_name.v>
-excecute:
+
+excecute: 
 $./a.out
